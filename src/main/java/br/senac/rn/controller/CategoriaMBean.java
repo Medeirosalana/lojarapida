@@ -32,12 +32,13 @@ public class CategoriaMBean extends AbstractController<Categoria> {
         try {
             if (categoria.getId()==0) {
                 dao.create(categoria);
-                categoria = new Categoria();
             } else {
                 dao.update(categoria);
             }
             addInfo("Categoria salva com sucesso!");
         } finally {
+        categoria = new Categoria();
+
             dao.close();
         }
         return null;

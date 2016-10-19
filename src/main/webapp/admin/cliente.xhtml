@@ -7,48 +7,64 @@
       xmlns:p="http://primefaces.org/ui"
       template="/templates/template.xhtml">
     
-    <ui:define name="titulo">Categorias</ui:define>
+    <ui:define name="titulo">Cliente</ui:define>
     <ui:define name="conteudo">
         <p:tabView>
             <p:tab title="Cadastrar">
                 <h:form>
                     <p:panelGrid>
-                        <h:inputHidden value="#{categoriaMBean.categoria.id}"/>
-                        <p:outputLabel value="Denominação:"/>
-                        <p:inputText value="#{categoriaMBean.categoria.denominacao}" requiredMessage="Campo denominação obrigatório" validatorMessage="Campo denominação não pode passar de 20 caracteres">
-                            <f:validateLength maximum="20"/>
-                        </p:inputText>
+                        <h:inputHidden value="#{clienteMBean.cliente.id}"/>
+                        <p:outputLabel value="Cpf:"/>
+                        <p:inputMask value="#{clienteMBean.cliente.cpf}" requiredMessage="Campo cpf obrigatório" validatorMessage="Campo cpf não pode passar de 11 caracteres" mask="999.999.999-99"/>
+                            
+                       
                         <br/>
                         <br/>
-                        <p:outputLabel value="Descrição"/>
-                        <br/>
-                            <p:inputTextarea value="#{categoriaMBean.categoria.descricao}" rows="3" cols="50" counter="display" maxlength="150" counterTemplate="Restam{0} caracteres" autoResize="false">
+                        <p:outputLabel value="Email:"/>
+                        
+                        <p:inputText value="#{clienteMBean.cliente.email}" requiredMessage="Campo email obrigatorio">
                                 
-                            </p:inputTextarea>
+                            </p:inputText>
                         <br/>
-                            <h:outputText id="display"/>
+                        <br/>
+                            <p:outputLabel value="Nome:"/>
+                        
+                        <p:inputText value="#{clienteMBean.cliente.nome}">
+                                
+                            </p:inputText>
                             <br/>
-                            <p:commandButton value="SALVAR" icon="ui-icon-disk" action="#{categoriaMBean.salvar}" ajax="false"/>
+                            <br/>
+                        <p:outputLabel value="Senha:" />
+                        
+                        <p:password value="#{clienteMBean.cliente.senha}"  >
+                                
+                        </p:password>
+                            <br/>
+                            <br/>
+                            <p:commandButton value="SALVAR" icon="ui-icon-disk" action="#{clienteMBean.salvar}" ajax="false"/>
                     </p:panelGrid>
                    
                 </h:form>
             </p:tab>
-            <p:tab title="Categorias">
+            <p:tab title="Cliente">
             <h:form>
                 
-                 <p:dataTable var="categoria" value="#{categoriaMBean.listaCompleta}" scrollable="true" scrollHeight="300">
+                <p:dataTable var="cliente" value="#{clienteMBean.listaCompleta}" scrollable="true" scrollHeight="300">
                      <p:column headerText="Id">
-                         <h:outputText value="#{categoria.id}"/>
+                         <h:outputText value="#{cliente.id}"/>
                      </p:column>
-                     <p:column headerText="Denominação">
-                         <h:outputText value="#{categoria.denominacao}"/>
+                     <p:column headerText="CPF">
+                         <h:outputText value="#{cliente.cpf}"/>
                      </p:column>
-                     <p:column headerText="Descrição">
-                         <h:outputText value="#{categoria.descricao}"/>
+                     <p:column headerText="Email">
+                         <h:outputText value="#{cliente.email}"/>
+                     </p:column>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{cliente.nome}"/>
                      </p:column>
                       <p:column headerText="Ação">
-                          <p:commandButton icon="ui-icon-search" ajax="false" action="#{categoriaMBean.selecionar(categoria)}" />
-                          <p:commandButton icon="ui-icon-trash" ajax="false" action="#{categoriaMBean.deletar(categoria)}" onclick="return confirm('Excluir?')"/>
+                          <p:commandButton icon="ui-icon-search" ajax="false" action="#{clienteMBean.selecionar(cliente)}" />
+                          <p:commandButton icon="ui-icon-trash" ajax="false" action="#{clienteMBean.deletar(cliente)}" onclick="return confirm('Excluir?')"/>
                      </p:column>
                 
             

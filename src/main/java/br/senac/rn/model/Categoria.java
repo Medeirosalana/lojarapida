@@ -51,5 +51,10 @@ public class Categoria implements PersistDB {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString() {
+        return "Categoria{" + "id=" + id + ", denominacao=" + denominacao + ", descricao=" + descricao + '}';
+    }
     
 }

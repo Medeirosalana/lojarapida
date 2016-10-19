@@ -70,5 +70,10 @@ public class Produto implements PersistDB {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     } 
+
+    @Override
+    public String toString() {
+        return "Produto{" + "id=" + id + ", denominacao=" + denominacao + ", descricao=" + descricao + ", preco=" + preco + ", categoria=" + categoria + '}';
+    }
     
 }

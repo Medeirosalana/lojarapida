@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      template="/templates/template.xhtml">
+    
+    <ui:define name="titulo">Produto</ui:define>
+    <ui:define name="conteudo">
+        <p:tabView>
+            <p:tab title="Cadastrar">
+                <h:form>
+                    <p:panelGrid>
+                        <h:inputHidden value="#{produtoMBean.produto.id}"/>
+                        <p:outputLabel value="Denominação:"/>                        
+                        <p:inputText value="#{produtoMBean.produto.denominacao}" requiredMessage="Campo denominação obrigatorio">
+                                
+                            </p:inputText>
+                        <br/>
+                        <br/>
+                            <p:outputLabel value="Descrição:"/>
+                        
+                       
+                                
+                        <p:inputTextarea value="#{produtoMBean.produto.descricao}" rows="3" cols="50" counter="display" maxlength="150" counterTemplate="Restam{0} caracteres" autoResize="false">
+                                
+                            </p:inputTextarea>
+                            <br/>
+                            <h:outputText id="display"/>
+                            <br/>
+                            <br/>
+                          <p:outputLabel  value="Categoria: " />
+                          <p:selectOneMenu value="#{produtoMBean.produto.categoria}">
+                <f:selectItem itemLabel="Selecione Categoria" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{produtoMBean.carregarCategorias}"  var="cat" itemValue="#{cat}" itemLabel="#{cat.descricao}"/>
+            </p:selectOneMenu>
+                            <br/>
+                            <br/>
+                            <p:commandButton value="SALVAR" icon="ui-icon-disk" action="#{produtoMBean.salvar}" ajax="false"/>
+                    </p:panelGrid>
+                   
+                </h:form>
+            </p:tab>
+            <p:tab title="Produto">
+            <h:form>
+                
+                <p:dataTable var="produto" value="#{produtoMBean.listaCompleta}" scrollable="true" scrollHeight="300">
+                     <p:column headerText="Id">
+                         <h:outputText value="#{produto.id}"/>
+                     </p:column>
+                     <p:column headerText="Categoria">
+                         <h:outputText value="#{produto.categoria}"/>
+                     </p:column>
+                     <p:column headerText="Denominação">
+                         <h:outputText value="#{produto.denominacao}"/>
+                     </p:column>
+                    <p:column headerText="Descrição">
+                        <h:outputText value="#{produto.descricao}"/>
+                     </p:column>
+                      <p:column headerText="Ação">
+                          <p:commandButton icon="ui-icon-search" ajax="false" action="#{produtoMBean.selecionar(produto)}" />
+                          <p:commandButton icon="ui-icon-trash" ajax="false" action="#{produtoMBean.deletar(produto)}" onclick="return confirm('Excluir?')"/>
+                     </p:column>
+                
+            
+             
+                 </p:dataTable>
+                </h:form>
+                            </p:tab>
+
+        </p:tabView>
+    
+    </ui:define>
+  
+</ui:composition>
+

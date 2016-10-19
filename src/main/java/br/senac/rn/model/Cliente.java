@@ -41,6 +41,7 @@ public class Cliente implements PersistDB {
     }
 
     public String getCpf() {
+        
         return cpf;
     }
 

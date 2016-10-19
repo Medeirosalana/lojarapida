@@ -29,6 +29,7 @@ public class ClienteMBean extends AbstractController<Cliente> {
 
     public String salvar() {
         ClienteDAO dao = new ClienteDAO();
+        cliente.setCpf(cliente.getCpf().replace(".", "").replace("-", ""));
         try {
             if (cliente.getId()==0) {
                 dao.create(cliente);
